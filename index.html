@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Nitin Affiliate Shop - Premium curated products with dynamic affiliate links.">
   <meta name="theme-color" content="#0f0f1f">
-  <title>Nitin Affiliate Shop | Dynamic Links</title>
+  <title>Nitin Affiliate Shop | Search & Dynamic Links</title>
   <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -14,13 +14,15 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      /* remove all tap highlights & click shadows */
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
       line-height: 1.5;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     /* ========= DARK THEME (PREMIUM NIGHT) ========= */
@@ -40,6 +42,7 @@
       --gradient-card: linear-gradient(145deg, rgba(30, 32, 48, 0.7), rgba(18, 20, 32, 0.9));
       --btn-primary: linear-gradient(95deg, #8B5CF6, #A855F7);
       --btn-hover: linear-gradient(95deg, #A855F7, #C084FC);
+      --search-bg: rgba(18, 20, 32, 0.7);
     }
 
     /* ========= LIGHT THEME (LUMINOUS LUXURY) ========= */
@@ -59,6 +62,7 @@
       --gradient-card: linear-gradient(135deg, #FFFFFF, #FEF9F0);
       --btn-primary: linear-gradient(95deg, #E11D48, #F97316);
       --btn-hover: linear-gradient(95deg, #F43F5E, #F97316);
+      --search-bg: rgba(255, 255, 245, 0.9);
     }
 
     body {
@@ -72,6 +76,7 @@
       padding: 0 28px;
     }
 
+    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -116,6 +121,69 @@
       color: var(--accent-primary);
     }
 
+    /* ===== SEARCH BAR (CENTERED) ===== */
+    .search-section {
+      margin: 30px 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-wrapper {
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+    }
+    .search-wrapper i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-primary);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      border-radius: 60px;
+      border: 1px solid var(--border-light);
+      background: var(--search-bg);
+      backdrop-filter: blur(8px);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      outline: none;
+    }
+    #searchInput:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+    #searchInput::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    .search-reset {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+      padding: 0;
+      outline: none;
+      box-shadow: none;
+    }
+    .search-reset i {
+      position: static;
+      transform: none;
+      font-size: 1rem;
+    }
+
+    /* Theme toggle */
     .theme-toggle {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
@@ -128,23 +196,29 @@
       gap: 8px;
       align-items: center;
       color: var(--text-primary);
-      transition: all 0.2s;
       backdrop-filter: blur(4px);
+      transition: 0.2s;
+      outline: none;
+      box-shadow: none;
+    }
+    .theme-toggle:active, .theme-toggle:focus {
+      transform: scale(0.97);
+      box-shadow: none;
+      outline: none;
     }
 
+    /* Hero */
     .hero {
-      padding: 60px 0 70px;
+      padding: 40px 0 50px;
       background: var(--gradient-hero);
       border-radius: 0 0 48px 48px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
-
     .hero-content {
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
     }
-
     .hero-badge {
       display: inline-block;
       background: rgba(139, 92, 246, 0.2);
@@ -157,9 +231,8 @@
       color: var(--accent-primary);
       border: 0.5px solid var(--border-light);
     }
-
     .hero h2 {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 800;
       line-height: 1.2;
       margin-bottom: 20px;
@@ -168,20 +241,17 @@
       -webkit-background-clip: text;
       color: transparent;
     }
-
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
-
     .btn-group {
       display: flex;
       gap: 18px;
       justify-content: center;
       flex-wrap: wrap;
     }
-
     .btn-primary, .btn-outline {
       padding: 12px 32px;
       border-radius: 40px;
@@ -191,60 +261,59 @@
       align-items: center;
       gap: 10px;
       transition: 0.2s;
+      outline: none;
+      box-shadow: none;
     }
-
+    .btn-primary:active, .btn-outline:active {
+      transform: scale(0.97);
+      box-shadow: none;
+    }
     .btn-primary {
       background: var(--btn-primary);
       color: white;
-      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
     }
-
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
       background: var(--btn-hover);
     }
-
     .btn-outline {
       border: 1.5px solid var(--accent-primary);
       color: var(--accent-primary);
       background: transparent;
     }
-
     .btn-outline:hover {
       background: var(--accent-primary);
       color: white;
       transform: translateY(-2px);
     }
 
+    /* Section titles */
     .section-title {
       text-align: center;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin: 56px 0 20px;
+      margin: 40px 0 16px;
     }
-
     .section-title span {
       background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
-
     .section-sub {
       text-align: center;
       color: var(--text-secondary);
-      margin-bottom: 48px;
-      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-size: 1rem;
     }
 
+    /* Products Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 32px;
-      margin: 40px 0 70px;
+      margin: 30px 0 60px;
     }
-
     .product-card {
       background: var(--bg-card);
       backdrop-filter: blur(12px);
@@ -254,47 +323,38 @@
       box-shadow: var(--shadow-xl);
       transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-
     .product-card:hover {
-      transform: translateY(-12px);
+      transform: translateY(-8px);
       border-color: var(--accent-primary);
-      box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.3);
     }
-
     .card-img {
       width: 100%;
       height: 210px;
       object-fit: cover;
       transition: 0.3s;
     }
-
     .product-card:hover .card-img {
       transform: scale(1.02);
     }
-
     .card-info {
       padding: 22px 20px 26px;
     }
-
     .card-info h3 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       margin-bottom: 8px;
     }
-
     .price {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--accent-primary);
       margin: 12px 0 8px;
     }
-
     .rating {
       color: #FBBF24;
       margin: 10px 0;
       letter-spacing: 2px;
     }
-
     .affiliate-btn {
       display: inline-flex;
       align-items: center;
@@ -311,66 +371,66 @@
       transition: 0.2s;
       border: none;
       cursor: pointer;
+      outline: none;
+      box-shadow: none;
     }
-
+    .affiliate-btn:active {
+      transform: scale(0.97);
+      box-shadow: none;
+    }
     .affiliate-btn i {
       font-size: 1rem;
     }
-
     .affiliate-btn:hover {
       background: var(--btn-hover);
       gap: 16px;
-      letter-spacing: 0.3px;
     }
 
+    /* Features */
     .features {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 40px;
-      margin: 70px 0;
-      padding: 40px 0;
+      margin: 40px 0;
+      padding: 30px 0;
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
     }
-
     .feature-item {
       text-align: center;
       max-width: 220px;
     }
-
     .feature-item i {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       background: var(--btn-primary);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
+    /* Newsletter */
     .newsletter {
       background: var(--bg-card);
       backdrop-filter: blur(16px);
       border-radius: 48px;
-      padding: 48px 32px;
+      padding: 40px 28px;
       text-align: center;
-      margin: 50px 0 60px;
+      margin: 40px 0 60px;
       border: 1px solid var(--border-light);
     }
-
     .newsletter h3 {
-      font-size: 1.8rem;
-      margin-bottom: 16px;
+      font-size: 1.6rem;
+      margin-bottom: 12px;
     }
-
     .newsletter-form {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 20px;
     }
-
     .newsletter-form input {
       padding: 14px 20px;
       border-radius: 60px;
@@ -379,8 +439,8 @@
       color: var(--text-primary);
       min-width: 260px;
       font-size: 1rem;
+      outline: none;
     }
-
     .newsletter-form button {
       background: var(--btn-primary);
       border: none;
@@ -390,32 +450,41 @@
       color: white;
       cursor: pointer;
       transition: 0.2s;
+      outline: none;
+      box-shadow: none;
+    }
+    .newsletter-form button:active {
+      transform: scale(0.96);
     }
 
+    /* Footer */
     .footer {
-      padding: 40px 0 30px;
+      padding: 30px 0 25px;
       text-align: center;
       border-top: 1px solid var(--border-light);
-      margin-top: 20px;
+      margin-top: 10px;
       color: var(--text-secondary);
     }
-
     .social-icons {
       display: flex;
       justify-content: center;
       gap: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
-
     .social-icons a {
       color: var(--text-secondary);
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       transition: 0.2s;
+      display: inline-block;
     }
-
     .social-icons a:hover {
       color: var(--accent-primary);
-      transform: translateY(-4px);
+      transform: translateY(-3px);
+    }
+
+    /* Hidden class for filtering */
+    .product-card.hidden {
+      display: none;
     }
 
     @media (max-width: 768px) {
@@ -424,10 +493,10 @@
         text-align: center;
       }
       .hero h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
       .section-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -437,7 +506,7 @@
     <nav class="navbar">
       <div class="logo">
         <h1>⚡ NITIN AFFILIATE SHOP</h1>
-        <p>dynamic links • premium curation</p>
+        <p>search • dynamic links • premium curation</p>
       </div>
       <div class="nav-links">
         <a href="#">Home</a>
@@ -450,6 +519,15 @@
         </div>
       </div>
     </nav>
+  </div>
+
+  <!-- Centered Search Bar -->
+  <div class="container search-section">
+    <div class="search-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search products... (e.g., Sony, Watch, Keyboard)">
+      <button class="search-reset" id="searchReset" aria-label="Clear search"><i class="fas fa-times-circle"></i></button>
+    </div>
   </div>
 
   <section class="hero">
@@ -473,12 +551,12 @@
       🔥 <span>Premium Affiliate Picks</span> 🔥
     </div>
     <div class="section-sub">
-      Handpicked top conversion products — links loaded from link.txt
+      Handpicked top conversion products — live search & dynamic links
     </div>
 
     <div class="products-grid" id="productGrid">
       <!-- Product 1 -->
-      <div class="product-card">
+      <div class="product-card" data-name="Sony WH-1000XM5 Headphones" data-desc="Noise canceling, 30hr battery">
         <img class="card-img" src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=260&fit=crop" alt="Premium Headphones" loading="lazy">
         <div class="card-info">
           <h3>Sony WH-1000XM5</h3>
@@ -489,7 +567,7 @@
         </div>
       </div>
       <!-- Product 2 -->
-      <div class="product-card">
+      <div class="product-card" data-name="Apple Watch Series 9 Smart Watch" data-desc="Health metrics, retina display">
         <img class="card-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=260&fit=crop" alt="Smart Watch" loading="lazy">
         <div class="card-info">
           <h3>Apple Watch Series 9</h3>
@@ -500,7 +578,7 @@
         </div>
       </div>
       <!-- Product 3 -->
-      <div class="product-card">
+      <div class="product-card" data-name="Razer Huntsman V2 Gaming Keyboard" data-desc="Optical switches, RGB">
         <img class="card-img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=260&fit=crop" alt="Gaming Keyboard" loading="lazy">
         <div class="card-info">
           <h3>Razer Huntsman V2</h3>
@@ -511,7 +589,7 @@
         </div>
       </div>
       <!-- Product 4 -->
-      <div class="product-card">
+      <div class="product-card" data-name="Logitech MX Master 3S Wireless Mouse" data-desc="8K DPI, silent clicks">
         <img class="card-img" src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400&h=260&fit=crop" alt="Wireless Mouse" loading="lazy">
         <div class="card-info">
           <h3>Logitech MX Master 3S</h3>
@@ -522,7 +600,7 @@
         </div>
       </div>
       <!-- Product 5 -->
-      <div class="product-card">
+      <div class="product-card" data-name="DJI Osmo Action 4 Camera" data-desc="Waterproof 4K HDR">
         <img class="card-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=260&fit=crop" alt="Action Camera" loading="lazy">
         <div class="card-info">
           <h3>DJI Osmo Action 4</h3>
@@ -533,7 +611,7 @@
         </div>
       </div>
       <!-- Product 6 -->
-      <div class="product-card">
+      <div class="product-card" data-name="JBL Flip 6 Portable Speaker" data-desc="Waterproof, rich bass">
         <img class="card-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=260&fit=crop" alt="Portable Speaker" loading="lazy">
         <div class="card-info">
           <h3>JBL Flip 6</h3>
@@ -557,7 +635,7 @@
 
   <div class="container" id="deals">
     <div class="newsletter">
-      <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; color: var(--accent-primary);"></i>
+      <i class="fas fa-envelope-open-text" style="font-size: 2.2rem; color: var(--accent-primary);"></i>
       <h3>Get exclusive early access deals</h3>
       <p style="margin-bottom: 10px;">Subscribe & receive secret promos + extra affiliate bonuses</p>
       <div class="newsletter-form">
@@ -579,10 +657,9 @@
     <p style="margin-top: 12px; font-size: 0.8rem;"><i class="fas fa-link"></i> As an affiliate, we earn from qualifying purchases.</p>
   </footer>
 
-  <!-- Load link.js first, then assign links -->
   <script src="link.js"></script>
   <script>
-    // Theme toggler (same as before)
+    // ---------- THEME TOGGLER with smooth transition ----------
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const themeTextSpan = document.getElementById('themeText');
@@ -612,7 +689,7 @@
       setTheme(isDark ? 'light' : 'dark');
     });
 
-    // Newsletter
+    // ---------- NEWSLETTER ----------
     const subscribeBtn = document.getElementById('subBtn');
     const emailInput = document.getElementById('newsEmail');
     subscribeBtn.addEventListener('click', (e) => {
@@ -628,42 +705,89 @@
       }
     });
 
-    // --- DYNAMIC AFFILIATE LINKS FROM link.js ---
+    // ---------- DYNAMIC AFFILIATE LINKS (from link.js) ----------
     async function assignAffiliateLinks() {
-      // Wait for links to load (link.js provides loadAffiliateLinks)
       if (typeof window.loadAffiliateLinks === 'function') {
         await window.loadAffiliateLinks();
       }
       const links = window.getAffiliateLinks ? window.getAffiliateLinks() : [];
       const buttons = document.querySelectorAll('.affiliate-btn');
       
-      buttons.forEach((btn, idx) => {
+      function fallbackHandler(e) {
+        e.preventDefault();
+        alert("🔗 Affiliate link not configured in link.txt yet. Please add a valid URL for this product.");
+      }
+
+      buttons.forEach((btn) => {
         const linkIndex = parseInt(btn.getAttribute('data-index'), 10);
         if (links && links.length > linkIndex && links[linkIndex] && links[linkIndex] !== '#') {
           btn.href = links[linkIndex];
-          btn.setAttribute('target', '_blank');  // open in new tab
+          btn.setAttribute('target', '_blank');
+          // remove any old fallback listeners
           btn.removeEventListener('click', fallbackHandler);
         } else {
-          // If no valid link, show alert on click (demo fallback)
           btn.href = 'javascript:void(0);';
           btn.addEventListener('click', fallbackHandler);
         }
       });
     }
 
-    function fallbackHandler(e) {
-      e.preventDefault();
-      alert("🔗 Affiliate link not configured in link.txt yet. Please add a valid URL for this product.");
-    }
-
-    // Run after DOM + link.js ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', assignAffiliateLinks);
     } else {
       assignAffiliateLinks();
     }
 
-    // Smooth scroll for anchor links
+    // ---------- SEARCH / FILTER FUNCTIONALITY ----------
+    const searchInput = document.getElementById('searchInput');
+    const resetBtn = document.getElementById('searchReset');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function filterProducts() {
+      const query = searchInput.value.trim().toLowerCase();
+      let hasVisible = false;
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-name')?.toLowerCase() || '';
+        const desc = card.getAttribute('data-desc')?.toLowerCase() || '';
+        const titleElem = card.querySelector('h3')?.innerText.toLowerCase() || '';
+        const matches = query === '' || name.includes(query) || desc.includes(query) || titleElem.includes(query);
+        if (matches) {
+          card.classList.remove('hidden');
+          hasVisible = true;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      // show/hide reset button
+      resetBtn.style.display = query !== '' ? 'flex' : 'none';
+      
+      // optional: show no results message (dynamic)
+      let noResultMsg = document.getElementById('noResultsMsg');
+      if (!noResultMsg) {
+        noResultMsg = document.createElement('div');
+        noResultMsg.id = 'noResultsMsg';
+        noResultMsg.style.textAlign = 'center';
+        noResultMsg.style.padding = '40px';
+        noResultMsg.style.color = 'var(--text-secondary)';
+        noResultMsg.style.fontSize = '1.1rem';
+        document.getElementById('productGrid').after(noResultMsg);
+      }
+      if (!hasVisible && query !== '') {
+        noResultMsg.innerText = '🔍 No products match "' + query + '". Try another keyword!';
+        noResultMsg.style.display = 'block';
+      } else {
+        noResultMsg.style.display = 'none';
+      }
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterProducts();
+      searchInput.focus();
+    });
+
+    // Smooth scroll for anchor links (no shadow issues)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
