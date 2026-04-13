@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Nitin Affiliate Shop - Premium curated products with dynamic affiliate links.">
+  <meta name="theme-color" content="#0f0f1f">
+  <title>Nitin Affiliate Shop | Dynamic Links</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* ========= DARK THEME (PREMIUM NIGHT) ========= */
+    body.dark-theme {
+      --bg-primary: #05050A;
+      --bg-secondary: #0B0B14;
+      --bg-card: rgba(18, 20, 32, 0.85);
+      --bg-card-solid: #121420;
+      --text-primary: #F0F2F8;
+      --text-secondary: #B0B8D0;
+      --accent-glow: #8B5CF6;
+      --accent-primary: #A855F7;
+      --accent-secondary: #06B6D4;
+      --border-light: rgba(139, 92, 246, 0.25);
+      --shadow-xl: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+      --gradient-hero: linear-gradient(135deg, #0B1120 0%, #111827 100%);
+      --gradient-card: linear-gradient(145deg, rgba(30, 32, 48, 0.7), rgba(18, 20, 32, 0.9));
+      --btn-primary: linear-gradient(95deg, #8B5CF6, #A855F7);
+      --btn-hover: linear-gradient(95deg, #A855F7, #C084FC);
+    }
+
+    /* ========= LIGHT THEME (LUMINOUS LUXURY) ========= */
+    body.light-theme {
+      --bg-primary: #FEFCF5;
+      --bg-secondary: #F9F7F0;
+      --bg-card: rgba(255, 255, 245, 0.96);
+      --bg-card-solid: #FFFFFF;
+      --text-primary: #1E1B2C;
+      --text-secondary: #4A475C;
+      --accent-glow: #E11D48;
+      --accent-primary: #E11D48;
+      --accent-secondary: #F59E0B;
+      --border-light: rgba(225, 29, 72, 0.2);
+      --shadow-xl: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      --gradient-hero: linear-gradient(125deg, #FFF9EF 0%, #FEF2E8 100%);
+      --gradient-card: linear-gradient(135deg, #FFFFFF, #FEF9F0);
+      --btn-primary: linear-gradient(95deg, #E11D48, #F97316);
+      --btn-hover: linear-gradient(95deg, #F43F5E, #F97316);
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 1px solid var(--border-light);
+      backdrop-filter: blur(2px);
+    }
+
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: var(--btn-primary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .logo p {
+      font-size: 0.8rem;
+      color: var(--accent-secondary);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    .theme-toggle {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 60px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 500;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--text-primary);
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero {
+      padding: 60px 0 70px;
+      background: var(--gradient-hero);
+      border-radius: 0 0 48px 48px;
+      margin-bottom: 40px;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(139, 92, 246, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 8px 20px;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--accent-primary);
+      border: 0.5px solid var(--border-light);
+    }
+
+    .hero h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-outline {
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4);
+      background: var(--btn-hover);
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--accent-primary);
+      color: var(--accent-primary);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 56px 0 20px;
+    }
+
+    .section-title span {
+      background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      font-size: 1.1rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+      margin: 40px 0 70px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-xl);
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .product-card:hover .card-img {
+      transform: scale(1.02);
+    }
+
+    .card-info {
+      padding: 22px 20px 26px;
+    }
+
+    .card-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin: 12px 0 8px;
+    }
+
+    .rating {
+      color: #FBBF24;
+      margin: 10px 0;
+      letter-spacing: 2px;
+    }
+
+    .affiliate-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--btn-primary);
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 40px;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      margin-top: 18px;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .affiliate-btn i {
+      font-size: 1rem;
+    }
+
+    .affiliate-btn:hover {
+      background: var(--btn-hover);
+      gap: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin: 70px 0;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .feature-item {
+      text-align: center;
+      max-width: 220px;
+    }
+
+    .feature-item i {
+      font-size: 2.5rem;
+      background: var(--btn-primary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .newsletter {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border-radius: 48px;
+      padding: 48px 32px;
+      text-align: center;
+      margin: 50px 0 60px;
+      border: 1px solid var(--border-light);
+    }
+
+    .newsletter h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .newsletter-form input {
+      padding: 14px 20px;
+      border-radius: 60px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      min-width: 260px;
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      background: var(--btn-primary);
+      border: none;
+      padding: 0 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .footer {
+      padding: 40px 0 30px;
+      text-align: center;
+      border-top: 1px solid var(--border-light);
+      margin-top: 20px;
+      color: var(--text-secondary);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .social-icons a {
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      transition: 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-primary);
+      transform: translateY(-4px);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">
+        <h1>⚡ NITIN AFFILIATE SHOP</h1>
+        <p>dynamic links • premium curation</p>
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#deals">Deals</a>
+        <a href="#contact">Support</a>
+        <div class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon" id="themeIcon"></i>
+          <span id="themeText">Dark</span>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-gem"></i> Limited time premium deals
+        </div>
+        <h2>Curated Excellence.<br> Earn While You <span style="background:linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); background-clip:text; -webkit-background-clip:text; color:transparent;">Explore</span></h2>
+        <p>Top-rated affiliate picks — dynamically updated links from link.txt.<br>Change links without touching the website code.</p>
+        <div class="btn-group">
+          <a href="#products" class="btn-primary"><i class="fas fa-store"></i> Shop Now</a>
+          <a href="#" class="btn-outline"><i class="fas fa-chart-line"></i> Affiliate Program</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" id="products">
+    <div class="section-title">
+      🔥 <span>Premium Affiliate Picks</span> 🔥
+    </div>
+    <div class="section-sub">
+      Handpicked top conversion products — links loaded from link.txt
+    </div>
+
+    <div class="products-grid" id="productGrid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=260&fit=crop" alt="Premium Headphones" loading="lazy">
+        <div class="card-info">
+          <h3>Sony WH-1000XM5</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.9</div>
+          <div class="price">$299 <span style="font-size:0.9rem; text-decoration:line-through; opacity:0.6;">$399</span></div>
+          <p style="color: var(--text-secondary);">Industry-leading noise canceling, 30hr battery.</p>
+          <a href="#" class="affiliate-btn" data-index="0"><i class="fab fa-amazon"></i> Buy on Amazon →</a>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=260&fit=crop" alt="Smart Watch" loading="lazy">
+        <div class="card-info">
+          <h3>Apple Watch Series 9</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+          <div class="price">$399 <span style="font-size:0.9rem; text-decoration:line-through; opacity:0.6;">$429</span></div>
+          <p>Advanced health metrics, always-on retina.</p>
+          <a href="#" class="affiliate-btn" data-index="1"><i class="fab fa-amazon"></i> Grab Deal →</a>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=260&fit=crop" alt="Gaming Keyboard" loading="lazy">
+        <div class="card-info">
+          <h3>Razer Huntsman V2</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8</div>
+          <div class="price">$129 <span style="font-size:0.9rem; text-decoration:line-through; opacity:0.6;">$199</span></div>
+          <p>Optical switches, RGB chroma, premium build.</p>
+          <a href="#" class="affiliate-btn" data-index="2"><i class="fab fa-amazon"></i> Check Price →</a>
+        </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400&h=260&fit=crop" alt="Wireless Mouse" loading="lazy">
+        <div class="card-info">
+          <h3>Logitech MX Master 3S</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 4.9</div>
+          <div class="price">$99 <span style="font-size:0.9rem;">(Best Seller)</span></div>
+          <p>8K DPI, silent clicks, ergonomic genius.</p>
+          <a href="#" class="affiliate-btn" data-index="3"><i class="fab fa-amazon"></i> Shop Now →</a>
+        </div>
+      </div>
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=260&fit=crop" alt="Action Camera" loading="lazy">
+        <div class="card-info">
+          <h3>DJI Osmo Action 4</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.7</div>
+          <div class="price">$329 <span style="font-size:0.9rem; text-decoration:line-through; opacity:0.6;">$379</span></div>
+          <p>Waterproof 4K HDR, horizon steady.</p>
+          <a href="#" class="affiliate-btn" data-index="4"><i class="fab fa-amazon"></i> Exclusive Deal →</a>
+        </div>
+      </div>
+      <!-- Product 6 -->
+      <div class="product-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=260&fit=crop" alt="Portable Speaker" loading="lazy">
+        <div class="card-info">
+          <h3>JBL Flip 6</h3>
+          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 4.9</div>
+          <div class="price">$149 <span style="font-size:0.9rem;">(Limited)</span></div>
+          <p>PartyBoost, waterproof, rich bass.</p>
+          <a href="#" class="affiliate-btn" data-index="5"><i class="fab fa-amazon"></i> Buy on Amazon →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="features">
+      <div class="feature-item"><i class="fas fa-trophy"></i><h4>Top 1% Products</h4><p>Curated by experts</p></div>
+      <div class="feature-item"><i class="fas fa-percent"></i><h4>Up to 70% Commission</h4><p>Highest affiliate rates</p></div>
+      <div class="feature-item"><i class="fas fa-shield-alt"></i><h4>Secure Checkout</h4><p>Trusted partners</p></div>
+      <div class="feature-item"><i class="fas fa-shipping-fast"></i><h4>Express Shipping</h4><p>Worldwide delivery</p></div>
+    </div>
+  </div>
+
+  <div class="container" id="deals">
+    <div class="newsletter">
+      <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; color: var(--accent-primary);"></i>
+      <h3>Get exclusive early access deals</h3>
+      <p style="margin-bottom: 10px;">Subscribe & receive secret promos + extra affiliate bonuses</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address" id="newsEmail">
+        <button id="subBtn"><i class="fas fa-paper-plane"></i> Notify Me</button>
+      </div>
+      <p style="font-size: 0.75rem; margin-top: 20px;">No spam, just premium offers.</p>
+    </div>
+  </div>
+
+  <footer class="footer container">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2025 Nitin Affiliate Shop — premium affiliate network. Links dynamically loaded from link.txt.</p>
+    <p style="margin-top: 12px; font-size: 0.8rem;"><i class="fas fa-link"></i> As an affiliate, we earn from qualifying purchases.</p>
+  </footer>
+
+  <!-- Load link.js first, then assign links -->
+  <script src="link.js"></script>
+  <script>
+    // Theme toggler (same as before)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeTextSpan = document.getElementById('themeText');
+    const body = document.body;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        themeIcon.className = 'fas fa-sun';
+        themeTextSpan.innerText = 'Light';
+        localStorage.setItem('nitin_theme', 'light');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        themeIcon.className = 'fas fa-moon';
+        themeTextSpan.innerText = 'Dark';
+        localStorage.setItem('nitin_theme', 'dark');
+      }
+    }
+    const savedTheme = localStorage.getItem('nitin_theme');
+    if (savedTheme === 'light') setTheme('light');
+    else setTheme('dark');
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.contains('dark-theme');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Newsletter
+    const subscribeBtn = document.getElementById('subBtn');
+    const emailInput = document.getElementById('newsEmail');
+    subscribeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (email === "" || !email.includes('@')) {
+        alert("✨ Please enter a valid email address to unlock exclusive deals.");
+        emailInput.style.borderColor = "#E11D48";
+        setTimeout(() => { emailInput.style.borderColor = "var(--border-light)"; }, 1000);
+      } else {
+        alert(`🎉 Thanks ${email.split('@')[0]}! You're now on the VIP list.`);
+        emailInput.value = '';
+      }
+    });
+
+    // --- DYNAMIC AFFILIATE LINKS FROM link.js ---
+    async function assignAffiliateLinks() {
+      // Wait for links to load (link.js provides loadAffiliateLinks)
+      if (typeof window.loadAffiliateLinks === 'function') {
+        await window.loadAffiliateLinks();
+      }
+      const links = window.getAffiliateLinks ? window.getAffiliateLinks() : [];
+      const buttons = document.querySelectorAll('.affiliate-btn');
+      
+      buttons.forEach((btn, idx) => {
+        const linkIndex = parseInt(btn.getAttribute('data-index'), 10);
+        if (links && links.length > linkIndex && links[linkIndex] && links[linkIndex] !== '#') {
+          btn.href = links[linkIndex];
+          btn.setAttribute('target', '_blank');  // open in new tab
+          btn.removeEventListener('click', fallbackHandler);
+        } else {
+          // If no valid link, show alert on click (demo fallback)
+          btn.href = 'javascript:void(0);';
+          btn.addEventListener('click', fallbackHandler);
+        }
+      });
+    }
+
+    function fallbackHandler(e) {
+      e.preventDefault();
+      alert("🔗 Affiliate link not configured in link.txt yet. Please add a valid URL for this product.");
+    }
+
+    // Run after DOM + link.js ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', assignAffiliateLinks);
+    } else {
+      assignAffiliateLinks();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#" || targetId === "") return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
